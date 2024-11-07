@@ -26,7 +26,7 @@ static addMultiplication() {
 static addDivision() {
     Calculator.setOperation('/', '*');
 }
-    </code></pre> then make it rhyme
+    </code></pre> then make it rhyme<br>
 step 9 save defy and head back to your Chrome browser <br>
 step 10 test the operation and check if the plus and minus button has been corrected<br>
 stop the video and send it(the screen recorded video) to your teacher (me) on WhatsApp on 09153105037
