@@ -1,4 +1,4 @@
-# SS2-PROJECT-
+# SS1-PROJECT-
 <h1>Designing and editing a simple calculator </h1><br><br>
 <h2>correct the errors in plus, minus, multiplication and division buttons</h2>
 
