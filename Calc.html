@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Simple Calculator with Mismatched Operators</title>
+    <style>
+        body {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+        }
+        .calculator {
+            width: 300px;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+            background-color: #ffffff;
+        }
+        .display {
+            width: 100%;
+            height: 50px;
+            margin-bottom: 15px;
+            padding: 10px;
+            font-size: 1.5em;
+            text-align: right;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+        .buttons {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 10px;
+        }
+        .buttons button {
+            width: 100%;
+            padding: 20px;
+            font-size: 1.2em;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        .buttons button.operation {
+            background-color: #f39c12;
+            color: white;
+        }
+        .buttons button.clear {
+            background-color: #e74c3c;
+            color: white;
+        }
+        .buttons button.equal {
+            background-color: #2ecc71;
+            color: white;
+            grid-column: span 2;
+        }
+    </style>
+</head>
+<body>
+    <div class="calculator">
+    <h2>SIR PASCHAL </h2>
+        <input type="text" class="display" id="display" disabled>
+        <div class="buttons">
+            <button onclick="clearDisplay()" class="clear">C</button>
+            <button onclick="appendDisplay('(')">(</button>
+            <button onclick="appendDisplay(')')">)</button>
+            <button onclick="Calculator.addDivision()" class="operation">/</button>
+            <button onclick="appendDisplay('7')">7</button>
+            <button onclick="appendDisplay('8')">8</button>
+            <button onclick="appendDisplay('9')">9</button>
+            <button onclick="Calculator.addMultiplication()" class="operation">*</button>
+            <button onclick="appendDisplay('4')">4</button>
+            <button onclick="appendDisplay('5')">5</button>
+            <button onclick="appendDisplay('6')">6</button>
+            <button onclick="Calculator.addSubtraction()" class="operation">-</button>
+            <button onclick="appendDisplay('1')">1</button>
+            <button onclick="appendDisplay('2')">2</button>
+            <button onclick="appendDisplay('3')">3</button>
+            <button onclick="Calculator.addAddition()" class="operation">+</button>
+            <button onclick="appendDisplay('0')">0</button>
+            <button onclick="appendDisplay('.')">.</button>
+            <button onclick="calculateResult()" class="equal">=</button>
+        </div>
+    </div>
+    <script>
+        class Calculator {
+            static currentDisplay = '';
+            static internalExpression = '';
+
+            static addAddition() {
+                Calculator.setOperation('+', '-');
+            }
+
+            static addSubtraction() {
+                Calculator.setOperation('-', '+');
+            }
+
+            static addMultiplication() {
+                Calculator.setOperation('*', '/');
+            }
+
+            static addDivision() {
+                Calculator.setOperation('/', '*');
+            }
+
+            static setOperation(displayOperator, actualOperator) {
+                Calculator.currentDisplay += displayOperator;  // Update the display with the intended symbol
+                Calculator.internalExpression += actualOperator; // Store the mismatched operation
+                updateDisplay();
+            }
+        }
+
+        function appendDisplay(value) {
+            Calculator.currentDisplay += value;      // Update display text
+            Calculator.internalExpression += value;  // Update internal expression as-is for numbers
+            updateDisplay();
+        }
+
+        function clearDisplay() {
+            Calculator.currentDisplay = '';
+            Calculator.internalExpression = '';
+            updateDisplay();
+        }
+
+        function updateDisplay() {
+            document.getElementById('display').value = Calculator.currentDisplay;
+        }
+
+        function calculateResult() {
+            try {
+                let result = eval(Calculator.internalExpression);
+                Calculator.currentDisplay = result;
+                Calculator.internalExpression = result.toString();
+                updateDisplay();
+            } catch (error) {
+                Calculator.currentDisplay = 'Error';
+                Calculator.internalExpression = '';
+                updateDisplay();
+            }
+        }
+    </script>
+</body>
+</html>
