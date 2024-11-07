@@ -12,7 +12,7 @@ step 6 as at this point open your screen recorder to record your actions while e
 step 7 locate the name Paschal and edit it to your own name<br>
 step 8 locate   <pre><code>
 static addAddition() {
-    Calculator.setOperation('+', '+');
+    Calculator.setOperation('+', '-');
 }
 
 static addSubtraction() {
